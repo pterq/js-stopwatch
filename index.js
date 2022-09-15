@@ -13,10 +13,8 @@ let mins = 0;
 let secs = 0;
 let milis = 0;
 let currentNumOfSplits = 0;
-let lastHrs = 0;
-let lastMins = 0;
-let lastSecs = 0;
-let lastMilis = 0;
+
+let milisArray = [];
 
 
 startAndStopBtn.addEventListener("click", () => {
@@ -35,12 +33,20 @@ startAndStopBtn.addEventListener("click", () => {
 splitBtn.addEventListener("click", () => {
     if(paused) return;
 
-    let newDiv = document.createElement("div");
-    newDiv.className = "splitDisplay";
-    newDiv.id = "splitDisplayNumber" + currentNumOfSplits;
-
-    //add color to difference in split text depending on comparison
     let sign = "";
+    let innerDiv = document.createElement("div");
+    let leftDiv = document.createElement("div");
+    let midDiv = document.createElement("div");
+    let rightDiv = document.createElement("div");
+
+    leftDiv.className = "splitDisplay align-left";
+    midDiv.className = "splitDisplay";
+    rightDiv.className = "splitDisplay align-right";
+    
+
+    /*
+    //add color to difference in split text depending on comparison
+    
     let condition = lastHrs > hrs || lastMins > mins || lastSecs > secs || lastMilis > milis;
     if(condition){
         newDiv.style.color = "red";
@@ -55,16 +61,22 @@ splitBtn.addEventListener("click", () => {
         newDiv.style.color = "white";
         sign = "";
     }
-    newDiv.innerHTML = `${currentNumOfSplits + 1}| ${hrs}:${mins}:${secs}:${milis} | ${sign}${Math.abs(milis - lastMilis)}`;
-    
-    lastHrs = hrs;
-    lastMins = mins;
-    lastSecs = secs;
-    lastMilis = milis;
+    */
 
-    //add new div to the html
-    let targetLocation = document.querySelector("#splitContainer");
-    targetLocation.insertBefore(newDiv, targetLocation.firstChild);
+    //content of new divs
+    leftDiv.textContent = `${currentNumOfSplits + 1} |`;
+    midDiv.textContent = `${hrs}:${mins}:${secs}:${milis}`;
+    rightDiv.textContent = ``;
+
+
+    //add new divs to the html
+    let innerDivTarget = document.querySelector("#splitContainer");
+    innerDivTarget.insertBefore(innerDiv, innerDivTarget.firstChild);
+    
+    let targetLocation = document.querySelector("#splitContainer").firstChild;
+    targetLocation.append(leftDiv);
+    targetLocation.append(midDiv);
+    targetLocation.append(rightDiv);
     currentNumOfSplits++;
 
 

@@ -23,23 +23,19 @@
 }
 
 .splitDisplay{
-    width: 15%;
+    width: 25%;
     display: inline-table;
     font-size: 25px;
     color: white;
     font-family: consolas, monospace;
     text-align: center;
-    margin: 7px;
+    margin: 10px;
 }
 
-.betterTimeDifference{
-    color: green;
+.align-right{
+    text-align: right;
 }
 
-.worseTimeDifference{
-    color: red;
-}
-
-.noTimeDifference{
-    color: grey;
+.align-left{
+    text-align: left;
 }
