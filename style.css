@@ -13,6 +13,7 @@
     font-size: 75px;
     color: #40c437;
     font-family: consolas, monospace;
+    
 }
 
 #timeContainer{
@@ -20,6 +21,7 @@
     border: 3px solid;
     border-radius: 25px;
     background-color: #222222;
+    padding: 5px;
 }
 
 .splitDisplay{
@@ -29,7 +31,11 @@
     color: white;
     font-family: consolas, monospace;
     text-align: center;
-    margin: 7px;
+    box-sizing: border-box;
+}
+
+.innerDiv{
+    padding: 7px;
 }
 
 .align-right{

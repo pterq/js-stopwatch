@@ -49,6 +49,7 @@ function addSplit(){
     let midDiv = document.createElement("div");
     let rightDiv = document.createElement("div");
 
+    innerDiv.className = "innerDiv";
     leftDiv.className = "splitDisplay align-right";
     midDiv.className = "splitDisplay";
     rightDiv.className = "splitDisplay align-left";
