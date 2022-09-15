@@ -11,12 +11,25 @@
 </head>
 <body>
     <div id="timeContainer">
-        <div id="timeDisplay">00:00:00</div>
+        <div id="timeDisplay">00:00:00:00</div>
         <button id="startAndStopBtn" class="timerBtn">START/PAUSE</button>
         <button id="splitBtn" class="timerBtn">SPLIT</button>
         <button id="resetBtn" class="timerBtn">RESET</button>
 
-        <div id="splitContainer"></div>
+        <div id="splitContainer">
+            <div>
+                <div class="splitDisplay">1|</div>
+                <div class="splitDisplay">00:00:00:00</div>
+                <div class="splitDisplay worseTimeDifference">| +10</div>  
+            </div>
+            <div>
+                <div class="splitDisplay">1|</div>
+                <div class="splitDisplay">00:00:00:00</div>
+                <div class="splitDisplay betterTimeDifference">| -10</div>  
+            </div>
+
+            
+        </div>
     </div>
 
 
