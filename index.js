@@ -80,7 +80,7 @@ function addSplit(){
     //content of new divs
     leftDiv.textContent = `${currentNumOfSplits + 1}`;
     midDiv.textContent = `| ${hrs}:${mins}:${secs} |`;
-    if(currentNumOfSplits == 0) rightDiv.textContent = `+00:00:00`;
+    if(currentNumOfSplits == 0) rightDiv.textContent = `+00:00:00:00`;
     else 
     {
         //rightDiv.textContent  = `${milisArray[currentNumOfSplits] - milisArray[currentNumOfSplits - 1]}`;
