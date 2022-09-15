@@ -23,13 +23,13 @@
 }
 
 .splitDisplay{
-    width: 25%;
+    width: 30%;
     display: inline-table;
     font-size: 25px;
     color: white;
     font-family: consolas, monospace;
     text-align: center;
-    margin: 10px;
+    margin: 7px;
 }
 
 .align-right{

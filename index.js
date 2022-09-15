@@ -79,10 +79,10 @@ function addSplit(){
     */
 
     //content of new divs
-    leftDiv.textContent = `${currentNumOfSplits + 1} |`;
-    midDiv.textContent = `${hrs}:${mins}:${secs}:${milis}`;
-    if(currentNumOfSplits == 0) rightDiv.textContent = `| 0`;
-    else  rightDiv.textContent  = `| ${milisArray[currentNumOfSplits] - milisArray[currentNumOfSplits - 1]}`;
+    leftDiv.textContent = `${currentNumOfSplits + 1}`;
+    midDiv.textContent = `| ${hrs}:${mins}:${secs}:${milis} |`;
+    if(currentNumOfSplits == 0) rightDiv.textContent = `0`;
+    else  rightDiv.textContent  = `${milisArray[currentNumOfSplits] - milisArray[currentNumOfSplits - 1]}`;
     
     //add new divs to the html
     let innerDivTarget = document.querySelector("#splitContainer");
