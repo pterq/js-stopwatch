@@ -50,9 +50,9 @@ function addSplit(){
     let midDiv = document.createElement("div");
     let rightDiv = document.createElement("div");
 
-    leftDiv.className = "splitDisplay align-left";
+    leftDiv.className = "splitDisplay align-right";
     midDiv.className = "splitDisplay";
-    rightDiv.className = "splitDisplay align-right";
+    rightDiv.className = "splitDisplay align-left";
     
     //Generating time for splitDisplay and for calculating the difference between splits
     milisArray.push(elapsedTime);
@@ -82,8 +82,8 @@ function addSplit(){
     //content of new divs
     leftDiv.textContent = `${currentNumOfSplits + 1} |`;
     midDiv.textContent = `${hrs}:${mins}:${secs}:${milis}`;
-    if(currentNumOfSplits == 0) rightDiv.textContent = 0;
-    else  rightDiv.textContent  = `${milisArray[currentNumOfSplits] - milisArray[currentNumOfSplits - 1]}`;
+    if(currentNumOfSplits == 0) rightDiv.textContent = `| 0`;
+    else  rightDiv.textContent  = `| ${milisArray[currentNumOfSplits] - milisArray[currentNumOfSplits - 1]}`;
     
 
 
