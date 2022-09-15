@@ -1,5 +1,5 @@
 .timerBtn{
-    width: 80px;
+    width: 100px;
     height: 30px;
     border: 3px solid;
     border-radius: 12px;
@@ -20,4 +20,8 @@
     border: 3px solid;
     border-radius: 25px;
     background-color: #222222;
+}
+
+#splitDisplay{
+    
 }
