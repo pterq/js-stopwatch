@@ -22,6 +22,24 @@
     background-color: #222222;
 }
 
-#splitDisplay{
-    
+.splitDisplay{
+    width: 15%;
+    display: inline-table;
+    font-size: 25px;
+    color: white;
+    font-family: consolas, monospace;
+    text-align: center;
+    margin: 7px;
+}
+
+.betterTimeDifference{
+    color: green;
+}
+
+.worseTimeDifference{
+    color: red;
+}
+
+.noTimeDifference{
+    color: grey;
 }
