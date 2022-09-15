@@ -56,9 +56,8 @@ function addSplit(){
     
     //Generating time for splitDisplay and for calculating the difference between splits
     milisArray.push(elapsedTime);
-    console.log(milisArray);
-    //produceTime(milisArray[currentNumOfSplits]);
     updateTime(elapsedTime);
+    //console.log(milisArray);
 
     /*
     //add color to difference in split text depending on comparison
@@ -85,8 +84,6 @@ function addSplit(){
     if(currentNumOfSplits == 0) rightDiv.textContent = `| 0`;
     else  rightDiv.textContent  = `| ${milisArray[currentNumOfSplits] - milisArray[currentNumOfSplits - 1]}`;
     
-
-
     //add new divs to the html
     let innerDivTarget = document.querySelector("#splitContainer");
     innerDivTarget.insertBefore(innerDiv, innerDivTarget.firstChild);
@@ -133,10 +130,17 @@ function updateTime(){
 }
 
 function produceTime(time){
+    milis = Math.floor((time % 1000));
+    secs =  Math.floor((time - milis) / 1000);
+    mins = Math.floor(((time - milis) / (1000 * 60)) % 60);
+    hrs = Math.floor(((time - milis) / (1000 * 60 * 60)) % 60);
+
+    /*
     milis = Math.floor((time) % 60);
     secs = Math.floor((time / 1000) % 60);
     mins = Math.floor((time / (1000 * 60) % 60));
     hrs  = Math.floor((time / (1000 * 60 * 60) % 60));
+    */
 
     secs = pad(secs);
     mins = pad(mins);
