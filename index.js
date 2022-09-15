@@ -8,19 +8,26 @@ let elapsedTime = 0;
 let currentTime = 0;
 let paused = true;
 let intervalId;
-let hrs = 0;
-let mins = 0;
-let secs = 0;
-let milis = 0;
+let hrs = "00";
+let mins = "00";
+let secs = "00";
+let milis = "00";
 let currentNumOfSplits = 0;
 
 let milisArray = [];
+let runOnce = false;
 
 
 startAndStopBtn.addEventListener("click", () => {
     if(paused){
         paused = false;
         startTime = Date.now() - elapsedTime;
+        if(!runOnce){
+            runOnce = true;
+            //milisArray.push(0);
+            addSplit();
+        }
+        
         intervalId = setInterval(updateTime, 35);
     }
     else if(!paused){
@@ -33,7 +40,11 @@ startAndStopBtn.addEventListener("click", () => {
 splitBtn.addEventListener("click", () => {
     if(paused) return;
 
-    let sign = "";
+    addSplit();
+})
+
+function addSplit(){
+    //let sign = "";
     let innerDiv = document.createElement("div");
     let leftDiv = document.createElement("div");
     let midDiv = document.createElement("div");
@@ -43,6 +54,11 @@ splitBtn.addEventListener("click", () => {
     midDiv.className = "splitDisplay";
     rightDiv.className = "splitDisplay align-right";
     
+    //Generating time for splitDisplay and for calculating the difference between splits
+    milisArray.push(elapsedTime);
+    console.log(milisArray);
+    //produceTime(milisArray[currentNumOfSplits]);
+    updateTime(elapsedTime);
 
     /*
     //add color to difference in split text depending on comparison
@@ -66,7 +82,9 @@ splitBtn.addEventListener("click", () => {
     //content of new divs
     leftDiv.textContent = `${currentNumOfSplits + 1} |`;
     midDiv.textContent = `${hrs}:${mins}:${secs}:${milis}`;
-    rightDiv.textContent = ``;
+    if(currentNumOfSplits == 0) rightDiv.textContent = 0;
+    else  rightDiv.textContent  = `${milisArray[currentNumOfSplits] - milisArray[currentNumOfSplits - 1]}`;
+    
 
 
     //add new divs to the html
@@ -78,25 +96,29 @@ splitBtn.addEventListener("click", () => {
     targetLocation.append(midDiv);
     targetLocation.append(rightDiv);
     currentNumOfSplits++;
-
-
-})
+}
 
 resetBtn.addEventListener("click", () => {
     paused = true;
     clearInterval(intervalId);
     startTime = 0;
     elapsedTime = 0;
-    currentTime = 0;
-    hrs = 0;
-    mins = 0;
-    secs = 0;
-    milis = 0;
-    
+    hrs = "00";
+    mins = "00";
+    secs = "00";
+    milis = "00";
+
+    while(milisArray.length > 0) {
+        milisArray.pop();
+    }
+    console.log(milisArray);
+    runOnce = false;
+    currentNumOfSplits = 0;
+
     timeDisplay.textContent = "00:00:00:00";
 
     //removes every entry in #splitContainer
-    currentNumOfSplits = 0;
+    
     const splitContainer = document.querySelector("#splitContainer");
     while(splitContainer.hasChildNodes){
         splitContainer.removeChild(splitContainer.firstChild);
@@ -106,20 +128,22 @@ resetBtn.addEventListener("click", () => {
 
 function updateTime(){
     elapsedTime = Date.now() - startTime;
+    produceTime(elapsedTime);
+    timeDisplay.textContent = `${hrs}:${mins}:${secs}:${milis}`;
+}
 
-    milis = Math.floor((elapsedTime) % 60);
-    secs = Math.floor((elapsedTime / 1000) % 60);
-    mins = Math.floor((elapsedTime / (1000 * 60) % 60));
-    hrs  = Math.floor((elapsedTime / (1000 * 60 * 60) % 60));
+function produceTime(time){
+    milis = Math.floor((time) % 60);
+    secs = Math.floor((time / 1000) % 60);
+    mins = Math.floor((time / (1000 * 60) % 60));
+    hrs  = Math.floor((time / (1000 * 60 * 60) % 60));
 
     secs = pad(secs);
     mins = pad(mins);
     hrs = pad(hrs);
     milis = pad(milis);
+}
 
-    timeDisplay.textContent = `${hrs}:${mins}:${secs}:${milis}`;
-
-    function pad(unit){
-        return ("0" + unit).length > 2 ? unit : "0" + unit;
-    }
+function pad(unit){
+    return ("0" + unit).length > 2 ? unit : "0" + unit;
 }
