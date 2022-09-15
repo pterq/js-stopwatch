@@ -44,7 +44,6 @@ splitBtn.addEventListener("click", () => {
 })
 
 function addSplit(){
-    //let sign = "";
     let innerDiv = document.createElement("div");
     let leftDiv = document.createElement("div");
     let midDiv = document.createElement("div");
@@ -80,10 +79,16 @@ function addSplit(){
 
     //content of new divs
     leftDiv.textContent = `${currentNumOfSplits + 1}`;
-    midDiv.textContent = `| ${hrs}:${mins}:${secs}:${milis} |`;
-    if(currentNumOfSplits == 0) rightDiv.textContent = `0`;
-    else  rightDiv.textContent  = `${milisArray[currentNumOfSplits] - milisArray[currentNumOfSplits - 1]}`;
-    
+    midDiv.textContent = `| ${hrs}:${mins}:${secs} |`;
+    if(currentNumOfSplits == 0) rightDiv.textContent = `+00:00:00`;
+    else 
+    {
+        //rightDiv.textContent  = `${milisArray[currentNumOfSplits] - milisArray[currentNumOfSplits - 1]}`;
+        produceTime(milisArray[currentNumOfSplits] - milisArray[currentNumOfSplits - 1]);
+        rightDiv.textContent  = `+${hrs}:${mins}:${secs}:${milis}`;
+
+    }
+
     //add new divs to the html
     let innerDivTarget = document.querySelector("#splitContainer");
     innerDivTarget.insertBefore(innerDiv, innerDivTarget.firstChild);
@@ -130,7 +135,7 @@ function updateTime(){
 }
 
 function produceTime(time){
-    milis = Math.floor((time % 1000));
+    milis = Math.floor((time % 1000) / 10);
     secs =  Math.floor((time - milis) / 1000);
     mins = Math.floor(((time - milis) / (1000 * 60)) % 60);
     hrs = Math.floor(((time - milis) / (1000 * 60 * 60)) % 60);
