@@ -1,5 +1,5 @@
 const timeDisplay = document.querySelector("#timeDisplay");
-const startBtn = document.querySelector("#startBtn");
+const startAndStopBtn = document.querySelector("#startAndStopBtn");
 const pauseBtn = document.querySelector("#pauseBtn");
 const resetBtn = document.querySelector("#resetBtn");
 
@@ -12,16 +12,13 @@ let hrs = 0;
 let mins = 0;
 let secs = 0;
 
-startBtn.addEventListener("click", () => {
+startAndStopBtn.addEventListener("click", () => {
     if(paused){
         paused = false;
         startTime = Date.now() - elapsedTime;
         intervalId = setInterval(updateTime, 75);
     }
-});
-
-pauseBtn.addEventListener("click", () => {
-    if(!paused){
+    else if(!paused){
         paused = true;
         elapsedTime = Date.now() - startTime;
         clearInterval(intervalId);
@@ -57,6 +54,6 @@ function updateTime(){
     timeDisplay.textContent = `${hrs}:${mins}:${secs}`;
 
     function pad(unit){
-        return unit.length > 1 ? unit : "0" + unit;
+        return ("0" + unit).length > 2 ? unit : "0" + unit;
     }
 }
